@@ -1,2 +1,0 @@
-Pon aqui los archivos .patt de tus marcadores personalizados (los descargas del generador de AR.js).
-Los marcadores tipo "barcode" no necesitan archivo, solo un numero en markers.json.
