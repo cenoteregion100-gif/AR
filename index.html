@@ -14,7 +14,7 @@
     #aviso {
       position: fixed; left: 12px; right: 12px; bottom: 16px; z-index: 10;
       padding: 12px 16px; border-radius: 10px;
-      background: rgba(20, 40, 28, .88); color: #f2f7f3;
+      background: rgba(140, 20, 20, .92); color: #fff;
       font-size: 16px; line-height: 1.35; text-align: center;
       transition: opacity .25s;
     }
@@ -30,7 +30,7 @@
 </head>
 <body>
   <div id="nombre"></div>
-  <div id="aviso">Permite el acceso a la cámara y apunta a un marcador de la instalación.</div>
+  <div id="aviso" class="oculto"></div>
   <div id="error"></div>
 
   <script>
@@ -71,6 +71,7 @@
       var aviso = document.getElementById('aviso');
       var etiqueta = document.getElementById('nombre');
       var visibles = 0;
+      var archivos = [];
 
       (config.marcadores || []).forEach(function (m) {
         var marcador = document.createElement('a-marker');
@@ -83,6 +84,8 @@
           marcador.setAttribute('url', m.patron);
         }
 
+        archivos.push(m.modelo);
+        if (m.tipo !== 'barcode') archivos.push(m.patron);
         var modelo = document.createElement('a-entity');
         modelo.setAttribute('gltf-model', m.modelo);
         modelo.setAttribute('scale', m.escala || '1 1 1');
@@ -92,14 +95,12 @@
 
         marcador.addEventListener('markerFound', function () {
           visibles++;
-          aviso.classList.add('oculto');
           etiqueta.textContent = m.nombre || '';
           etiqueta.classList.add('visible');
         });
         marcador.addEventListener('markerLost', function () {
           visibles = Math.max(0, visibles - 1);
           if (visibles === 0) {
-            aviso.classList.remove('oculto');
             etiqueta.classList.remove('visible');
           }
         });
@@ -112,6 +113,17 @@
       escena.appendChild(camara);
 
       document.body.appendChild(escena);
+
+      // Solo avisa si falta algún archivo en el sitio
+      Promise.all(archivos.map(function (a) {
+        return fetch(a, { method: 'HEAD' }).then(function (r) { return r.ok ? null : a; }).catch(function () { return a; });
+      })).then(function (faltan) {
+        faltan = faltan.filter(Boolean);
+        if (faltan.length) {
+          aviso.textContent = 'Faltan archivos en el sitio: ' + faltan.join(', ');
+          aviso.classList.remove('oculto');
+        }
+      });
     }
   </script>
 </body>
