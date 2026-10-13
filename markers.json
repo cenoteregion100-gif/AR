@@ -2,13 +2,13 @@
   "titulo": "Experiencia AR del parque",
   "marcadores": [
     {
-      "nombre": "terreno-1",
+      "nombre": "prueba de distancia",
       "tipo": "pattern",
-      "patron": "marcadores/terreno-1-1.patt",
-      "modelo": "modelos/terreno-1-1.glb",
+      "patron": "marcadores/prueba-de-distancia-1.patt",
+      "modelo": "modelos/prueba-de-distancia-1.glb",
       "escala": "1 1 1",
-      "posicion": "0 1.05 0",
-      "rotacion": "-90 0 0"
+      "posicion": "-1.85 -5.35 0",
+      "rotacion": "-75 0 0"
     }
   ]
 }
