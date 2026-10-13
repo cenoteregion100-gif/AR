@@ -2,13 +2,13 @@
   "titulo": "Experiencia AR del parque",
   "marcadores": [
     {
-      "nombre": "terreno",
+      "nombre": "terreno-1",
       "tipo": "pattern",
-      "patron": "marcadores/terreno-1.patt",
-      "modelo": "modelos/terreno-1.glb",
-      "escala": "0.05 0.05 0.05",
-      "posicion": "0 0.7 0",
-      "rotacion": "0 0 -90"
+      "patron": "marcadores/terreno-1-1.patt",
+      "modelo": "modelos/terreno-1-1.glb",
+      "escala": "1 1 1",
+      "posicion": "0 1.05 0",
+      "rotacion": "-90 0 0"
     }
   ]
 }
