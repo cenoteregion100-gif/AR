@@ -56,7 +56,7 @@
       var escena = document.createElement('a-scene');
       escena.setAttribute('embedded', '');
       escena.setAttribute('vr-mode-ui', 'enabled: false');
-      escena.setAttribute('renderer', 'logarithmicDepthBuffer: true; colorManagement: true; antialias: true;');
+      escena.setAttribute('renderer', 'antialias: true;');
       escena.setAttribute('arjs', 'sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;');
 
       // Luces para que los modelos no se vean oscuros
@@ -107,6 +107,19 @@
 
         escena.appendChild(marcador);
       });
+
+      // Prueba: abre el sitio con ?hiro al final del enlace y apunta al marcador Hiro (cubo rojo)
+      if (location.search.indexOf('hiro') !== -1) {
+        var h = document.createElement('a-marker');
+        h.setAttribute('preset', 'hiro');
+        var caja = document.createElement('a-box');
+        caja.setAttribute('color', 'red');
+        caja.setAttribute('position', '0 0.5 0');
+        h.appendChild(caja);
+        h.addEventListener('markerFound', function () { etiqueta.textContent = 'Hiro detectado'; etiqueta.classList.add('visible'); });
+        h.addEventListener('markerLost', function () { etiqueta.classList.remove('visible'); });
+        escena.appendChild(h);
+      }
 
       var camara = document.createElement('a-entity');
       camara.setAttribute('camera', '');
