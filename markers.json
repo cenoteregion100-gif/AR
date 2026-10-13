@@ -2,22 +2,13 @@
   "titulo": "Experiencia AR del parque",
   "marcadores": [
     {
-      "nombre": "Árbol",
-      "tipo": "barcode",
-      "valor": 0,
-      "modelo": "modelos/arbol.glb",
-      "escala": "1 1 1",
-      "posicion": "0 0 0",
-      "rotacion": "0 0 0"
-    },
-    {
-      "nombre": "Fuente",
+      "nombre": "terreno",
       "tipo": "pattern",
-      "patron": "marcadores/fuente.patt",
-      "modelo": "modelos/fuente.glb",
-      "escala": "1 1 1",
-      "posicion": "0 0 0",
-      "rotacion": "0 0 0"
+      "patron": "marcadores/terreno-1.patt",
+      "modelo": "modelos/terreno-1.glb",
+      "escala": "0.05 0.05 0.05",
+      "posicion": "0 0.7 0",
+      "rotacion": "0 0 -90"
     }
   ]
 }
