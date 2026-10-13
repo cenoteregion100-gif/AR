@@ -1,0 +1,23 @@
+{
+  "titulo": "Experiencia AR del parque",
+  "marcadores": [
+    {
+      "nombre": "Árbol",
+      "tipo": "barcode",
+      "valor": 0,
+      "modelo": "modelos/arbol.glb",
+      "escala": "1 1 1",
+      "posicion": "0 0 0",
+      "rotacion": "0 0 0"
+    },
+    {
+      "nombre": "Fuente",
+      "tipo": "pattern",
+      "patron": "marcadores/fuente.patt",
+      "modelo": "modelos/fuente.glb",
+      "escala": "1 1 1",
+      "posicion": "0 0 0",
+      "rotacion": "0 0 0"
+    }
+  ]
+}
