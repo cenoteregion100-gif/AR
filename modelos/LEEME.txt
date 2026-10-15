@@ -1,2 +1,0 @@
-Pon aqui tus modelos .glb (exportados desde Blender: File > Export > glTF 2.0, formato "glTF Binary (.glb)").
-Despues registralos en markers.json.
