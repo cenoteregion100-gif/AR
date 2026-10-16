@@ -18,6 +18,15 @@
       "escala": "4 4 4",
       "posicion": "0 -0.2 -0.35",
       "rotacion": "-90 0 0"
+    },
+     {
+      "nombre": "Comunidad",
+      "tipo": "pattern",
+      "patron": "marcadores/comunidad-1.patt",
+      "modelo": "modelos/comunidad-1.glb",
+      "escala": "4 4 4",
+      "posicion": "0 0 1.75",
+      "rotacion": "-90 0 0"
     }
   ]
 }
