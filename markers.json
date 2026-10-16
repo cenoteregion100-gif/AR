@@ -6,8 +6,17 @@
       "tipo": "pattern",
       "patron": "marcadores/biodiversidad-1.patt",
       "modelo": "modelos/biodiversidad-1.glb",
-      "escala": "3 3 3",
+      "escala": "5 5 5",
       "posicion": "-0.05 0.35 0.45",
+      "rotacion": "-90 0 0"
+    },
+    {
+      "nombre": "Hongos, raíces y agua",
+      "tipo": "pattern",
+      "patron": "marcadores/hongos-raices-y-agua-2.patt",
+      "modelo": "modelos/hongos-raices-y-agua-2.glb",
+      "escala": "4 4 4",
+      "posicion": "0 -0.2 -0.35",
       "rotacion": "-90 0 0"
     }
   ]
