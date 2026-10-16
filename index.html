@@ -103,21 +103,6 @@
         modelo.setAttribute('scale', m.escala || '1 1 1');
         modelo.setAttribute('position', m.posicion || '0 0 0');
         modelo.setAttribute('rotation', m.rotacion || '0 0 0');
-        // Evita el parpadeo (z-fighting) entre superficies casi pegadas: adelanta
-        // un poco los materiales con transparencia respecto al resto del modelo
-        modelo.addEventListener('model-loaded', function (ev) {
-          ev.detail.model.traverse(function (o) {
-            if (!o.isMesh) return;
-            [].concat(o.material).forEach(function (mt) {
-              if (mt.transparent) {
-                mt.polygonOffset = true;
-                mt.polygonOffsetFactor = -2;
-                mt.polygonOffsetUnits = -2;
-                mt.needsUpdate = true;
-              }
-            });
-          });
-        });
         marcador.appendChild(modelo);
 
         marcador.addEventListener('markerFound', function () {
