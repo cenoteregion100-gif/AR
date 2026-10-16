@@ -56,17 +56,24 @@
       var escena = document.createElement('a-scene');
       escena.setAttribute('embedded', '');
       escena.setAttribute('vr-mode-ui', 'enabled: false');
-      escena.setAttribute('renderer', 'antialias: true;');
+      escena.setAttribute('renderer', 'colorManagement: true; antialias: true;');
       escena.setAttribute('arjs', 'sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;');
 
-      // Luces para que los modelos no se vean oscuros
-      var ambiente = document.createElement('a-entity');
-      ambiente.setAttribute('light', 'type: ambient; intensity: 1.1');
-      escena.appendChild(ambiente);
-      var sol = document.createElement('a-entity');
-      sol.setAttribute('light', 'type: directional; intensity: 0.8');
-      sol.setAttribute('position', '1 3 2');
-      escena.appendChild(sol);
+      // Luces: la cámara es fija y el marcador se mueve, así que la luz llega
+      // siempre desde el mismo lado. Una luz ambiente fuerte y dos direccionales
+      // opuestas evitan que el modelo se vea oscuro según el ángulo.
+      // Opcional: agrega "luz": 1.8 arriba en markers.json para más brillo.
+      var luz = Number(config.luz) || 1.1;
+      [
+        ['type: ambient; intensity: ' + luz, null],
+        ['type: directional; intensity: 0.35', '1 3 2'],
+        ['type: directional; intensity: 0.25', '-1 -2 -2']
+      ].forEach(function (l) {
+        var e = document.createElement('a-entity');
+        e.setAttribute('light', l[0]);
+        if (l[1]) e.setAttribute('position', l[1]);
+        escena.appendChild(e);
+      });
 
       var aviso = document.getElementById('aviso');
       var etiqueta = document.getElementById('nombre');
@@ -75,6 +82,11 @@
 
       (config.marcadores || []).forEach(function (m) {
         var marcador = document.createElement('a-marker');
+        // Suavizado: reduce el temblor del modelo (sube smooth-count si aún vibra)
+        marcador.setAttribute('smooth', 'true');
+        marcador.setAttribute('smooth-count', '10');
+        marcador.setAttribute('smooth-tolerance', '0.01');
+        marcador.setAttribute('smooth-threshold', '5');
 
         if (m.tipo === 'barcode') {
           marcador.setAttribute('type', 'barcode');
